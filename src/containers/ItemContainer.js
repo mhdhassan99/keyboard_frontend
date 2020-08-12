@@ -7,9 +7,9 @@ class ItemContainer extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/items')
-            .then(response => response.json())
-            .then(items => this.setState({ items: items }))
+    fetch('http://localhost:3000/items')
+    .then(response => response.json())
+    .then(items => this.setState({ items: items }))
     }
 
     render() {
@@ -20,7 +20,6 @@ class ItemContainer extends React.Component {
             </div>
         )
     }
-
 }
 
 export default ItemContainer
