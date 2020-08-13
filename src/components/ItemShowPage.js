@@ -2,15 +2,20 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import './components.css';
 class ItemShowPage extends React.Component {
-
+    constructor(props) {
+    super (props)
+        let id = parseInt(this.props.match.params.id)
+        this.item = this.props.items.find((item) => item.id === id)
+        
+    }
     render() {
         return (
             <div className="item-show-page">
-                <NavLink to={`/items/${this.props.item.id}`}> <h1>{this.props.item.name}</h1> </NavLink>
-                <h3>Price: ${this.props.item.price}</h3>
-                <img class="item-show-page-picture" alt="" src={this.props.item.image} />
-                <p>Category: {this.props.item.category}</p>  
-                <button class="add-to-cart"> Add to cart </button>
+                <NavLink to={`/items/${this.item.id}`}> <h1>{this.item.name}</h1> </NavLink>
+                <h3>Price: ${this.item.price}</h3>
+                <img className="item-show-page-picture" alt="" src={this.item.image} />
+                <p>Category: {this.item.category}</p>  
+                <button className="add-to-cart"> Add to cart </button>
             </div>
         )
     }

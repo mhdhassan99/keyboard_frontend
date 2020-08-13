@@ -6,21 +6,38 @@ class ItemCard extends React.Component {
 	render() {
 		return (
 			<div className="item-card">
-				<img
-					alt=""
-					className="item-card-picture"
-					src={this.props.item.image}
-				/>
+                <div>
+                    <img
+                        alt=""
+                        className="item-card-picture"
+                        src={this.props.item.image}
+                    />
+                </div>
 				<NavLink to={`/items/${this.props.item.id}`}>
-					{" "}
-					<h2>{this.props.item.name}</h2>{" "}
+					{/* {" "} */}
+					<h2>{this.props.item.name}</h2>
+                    {/* {" "} */}
 				</NavLink>
 				<h3>Price: ${this.props.item.price}</h3>
+            </div>
 
-				<p>Category: {this.props.item.category}</p>
-			</div>
-		);
-	}
+    render() {
+        return (
+        <div className="item-card">
+                <div className="item-image">
+                    <img alt="" className="item-card-picture" src={this.props.item.image}/>
+                </div>
+                <div className="item-name">
+                        <NavLink to={`/items/${this.props.item.id}`}> <h2>{this.props.item.name}</h2> </NavLink>
+                    <h3>Price: ${this.props.item.price}</h3>
+                    
+                    <p>Category: {this.props.item.category}</p>  
+                    <button className="add-to-cart" onClick={() => this.props.addCartHandler(this.props.item.id)}>Add To Cart</button>
+                </div>
+        </div>
+
+        )
+    }
 }
 
 export default ItemCard;
