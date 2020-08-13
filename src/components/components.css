@@ -37,7 +37,7 @@
     border: 0.5px solid #2a28b1;
     color: #9946dd;
     font-size: 20px;
-    background: white;
+    background: rgb(184, 225, 150);
     border-radius: 5px;
     padding-left: 10px;
     padding-right: 10px;
@@ -46,8 +46,9 @@
 
 .add-to-cart:hover {
     color: red;
-    background: white;
+    background: rgb(242, 236, 62);
     transition: .3s
+
 }
 
 .item-card {
@@ -66,10 +67,20 @@
 
 .item-card-picture {
     width: auto;
-    height: 10em;
+    height: 8em;
     object-fit: fill;
     position: relative;
     transition: 0.4s ease-in all;
     border-radius: 10px;
     box-shadow: -8px 2px 10px 1px #210B2C;
+
+}
+
+.item-card-picture:hover {
+    transform: scale(1.1);
+}
+
+.item-name {
+    font-size: 2rem;
+    font-family: cursive;
 }
