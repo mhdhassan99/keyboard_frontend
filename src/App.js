@@ -2,8 +2,10 @@ import React from 'react';
 import './App.css';
 import ItemContainer from './containers/ItemContainer';
 import UserContainer from './containers/UserContainer';
+import NavBar from './components/NavBar'
 
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 
 class App extends React.Component {
@@ -12,10 +14,13 @@ class App extends React.Component {
   render() {
 
     return (
-      <div className="App">
-        <ItemContainer />
-        <UserContainer />
-        <h1>our World</h1>
+      <div>
+        <NavBar/>
+        <Switch>
+          <Route path="/items" render={() => <ItemContainer />}/>
+          <UserContainer />
+          <h1>our World</h1>  
+        </Switch>
       </div>
     );
   }

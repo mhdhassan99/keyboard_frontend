@@ -1,5 +1,6 @@
 import React from 'react'
 import ItemCard from '../components/ItemCard'
+import {Route, Switch} from 'react-router-dom'
 
 class ItemContainer extends React.Component {
     state = {
@@ -16,7 +17,16 @@ class ItemContainer extends React.Component {
         let items = this.state.items.map(item => <ItemCard item={item} key={item.id} />)
         return (
             <div>
-                {items}
+            <Switch>
+                <Route path="/items"/>
+                <Route path="/items" render={() => {
+                    return (
+                        <>
+                            { items }
+                        </>
+                    )
+                }}/>
+            </Switch>
             </div>
         )
     }
