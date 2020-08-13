@@ -17,12 +17,21 @@ class ItemContainer extends React.Component {
     render() {
         console.log(this.state)
         let items = this.state.items.map(item => <ItemCard item={item} key={item.id} />)
+        let keyboards = this.state.items.filter(item => item.category === 'keyboard')
+        let keyboardItems = keyboards.map(keyboard => <ItemCard keyboard={keyboard} key={keyboard.id}/>)
+        console.log(keyboardItems)
         return (
             <div>
             {this.state.items.length === 0 ? <h1>Loading</h1> : 
             
                 <Switch>
+                        <Route path="/items/keyboards" render={() => {
+                            return (
+                                { keyboardItems }
+                            )
+                        }} />
                     <Route path="/items/:id" render={({match}) => {
+                        console.log(match)
                         let id = parseInt(match.params.id)
                         let foundItems = this.state.items.find((item) => item.id === id)
                             return <ItemShowPage item={foundItems}/>
