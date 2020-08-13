@@ -1,6 +1,7 @@
 import React from 'react'
 import ItemCard from '../components/ItemCard'
 import {Route, Switch} from 'react-router-dom'
+import ItemShowPage from '../components/ItemShowPage'
 
 class ItemContainer extends React.Component {
     state = {
@@ -17,16 +18,23 @@ class ItemContainer extends React.Component {
         let items = this.state.items.map(item => <ItemCard item={item} key={item.id} />)
         return (
             <div>
-            <Switch>
-                <Route path="/items"/>
-                <Route path="/items" render={() => {
-                    return (
-                        <>
-                            { items }
-                        </>
-                    )
-                }}/>
-            </Switch>
+            {this.state.items.length === 0 ? <h1>Loading</h1> : 
+            
+                <Switch>
+                    <Route path="/items/:id" render={({match}) => {
+                        let id = parseInt(match.params.id)
+                        let foundItems = this.state.items.find((item) => item.id === id)
+                            return <ItemShowPage item={foundItems}/>
+                    }}/>
+                    <Route path="/items" render={() => {
+                        return (
+                            <div className="items-container">
+                                { items }
+                            </div>
+                        )
+                    }}/>
+                </Switch>
+            }
             </div>
         )
     }
