@@ -1,0 +1,75 @@
+.NavBar {
+    border: 200px;
+    margin: 20px;
+    display: flex;
+}
+
+.item-show-page {
+    width: 31%;
+    height: 100%;
+    display: table-cell;
+    padding-right: 10px;
+    vertical-align: middle;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #3d484100, #423a308c);
+    border: 3px solid #62427b;
+}
+
+.item-show-page-picture {
+    width: auto;
+    height: 325px;
+    object-fit: fill;
+    position: relative;
+    transition: 0.4s ease-in all;
+    border-radius: 10px;
+    box-shadow: -8px 2px 10px 1px #210B2C;
+}
+
+.item-show-page-picture:hover {
+    transform: scale(1.1);
+    box-shadow: none;
+}
+
+.add-to-cart {
+    margin-top: 15px;
+    border: 0.5px solid #2a28b1;
+    color: #9946dd;
+    font-size: 20px;
+    background: white;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px;
+}
+
+.add-to-cart:hover {
+    color: red;
+    background: white;
+    transition: .3s
+}
+
+.item-card {
+    width: 31%;
+    height: 100%;
+    padding-right: 10px;
+    vertical-align: middle;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #3d484100, #423a308c);
+    border: 3px solid #62427b;
+    display: inline-grid;
+}
+
+
+.item-card-picture {
+    width: auto;
+    height: 10em;
+    object-fit: fill;
+    position: relative;
+    transition: 0.4s ease-in all;
+    border-radius: 10px;
+    box-shadow: -8px 2px 10px 1px #210B2C;
+}

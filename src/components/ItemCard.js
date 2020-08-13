@@ -1,19 +1,26 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./components.css";
 
 class ItemCard extends React.Component {
+	render() {
+		return (
+			<div className="item-card">
+				<img
+					alt=""
+					className="item-card-picture"
+					src={this.props.item.image}
+				/>
+				<NavLink to={`/items/${this.props.item.id}`}>
+					{" "}
+					<h2>{this.props.item.name}</h2>{" "}
+				</NavLink>
+				<h3>Price: ${this.props.item.price}</h3>
 
-
-    render() {
-        return (
-        <div class="item-card">
-            <NavLink to={`/items/${this.props.item.id}`}> <h1>{this.props.item.name}</h1> </NavLink>
-            <h3>Price: ${this.props.item.price}</h3>
-            <img alt="" src={this.props.item.image}/>
-            <p>Category: {this.props.item.category}</p>  
-        </div>
-        )
-    }
+				<p>Category: {this.props.item.category}</p>
+			</div>
+		);
+	}
 }
 
-export default ItemCard
+export default ItemCard;
