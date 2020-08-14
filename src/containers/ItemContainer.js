@@ -7,43 +7,25 @@ import AccessoryShow from '../components/AccessoryShow'
 import CartContainer from './CartContainer'
 
 class ItemContainer extends React.Component {
-    state = {
-        items: [],
-        cartItems: []
-    }
-
-    componentDidMount() {
-    fetch('http://localhost:3000/items')
-    .then(response => response.json())
-    .then(items => this.setState({ items: items }))
-    }
-    addCartHandler = (id) => {
-        let cartArray = [...this.state.items]
-        let foundItem = cartArray.find(item => item.id === id)
-        let updatedCart = [...this.state.cartItems, foundItem]
-        this.setState({
-            cartItems: updatedCart
-        })
-    }   
 
     
     render() {
-        let items = this.state.items.map(item => <ItemCard item={item} key={item.id} addCartHandler={this.addCartHandler}/>)
-        let cartItem = <CartContainer cartItems={this.state.cartItems} />
+        let items = this.props.items.map(item => <ItemCard item={item} key={item.id} addCartHandler={this.props.addCartHandler}/>)
+        // let cartItem = <CartContainer cartItems={this.props.cartItems} />
        
         return (
             <div>
-            {this.state.items.length === 0 ? <h1>Loading...</h1> : 
+            {this.props.items.length === 0 ? <h1>Loading...</h1> : 
             
                 <Switch>
                     <Route path="/items/accessories" render={(props) => (
-                        <AccessoryShow {...props} items={this.state.items} />
+                        <AccessoryShow {...props} items={this.props.items} />
                     )}/>
                     <Route path="/items/keyboards" render={(props) => (
-                        <KeyBoardShow {...props} items={this.state.items} /> 
+                        <KeyBoardShow {...props} items={this.props.items} /> 
                     )}/>
                     <Route path="/items/:id" render={(props) => (
-                        <ItemShowPage {...props} items={this.state.items}/>
+                        <ItemShowPage {...props} items={this.props.items}/>
                     )}/>
                     <Route path="/items" render={() => {
                         return (
@@ -54,7 +36,7 @@ class ItemContainer extends React.Component {
                     }}/>
                 </Switch>  
             }
-                {cartItem}
+                {/* {cartItem} */}
             </div>
         )
     }

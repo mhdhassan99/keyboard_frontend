@@ -6,7 +6,7 @@ import {Nav} from 'react-bootstrap'
 import { NavDropdown} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
 import { FormControl} from 'react-bootstrap'
-
+import {Link} from 'react-router-dom'
 function NavBar () {
     return (
         <ul>
@@ -18,11 +18,11 @@ function NavBar () {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="/login">Login</Nav.Link>
-                            <Nav.Link href="/items">Home</Nav.Link>
-                            <Nav.Link href="/items/keyboards">Keyboard</Nav.Link>
-                            <Nav.Link href="/items/accessories">Accessories</Nav.Link>
-                            <Nav.Link href="/cart">Cart</Nav.Link>
+                            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                            <Nav.Link as={Link} to="/items">Home</Nav.Link>
+                            <Nav.Link as={Link} to="/items/keyboards">Keyboard</Nav.Link>
+                            <Nav.Link as={Link} to="/items/accessories">Accessories</Nav.Link>
+                            <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
                             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

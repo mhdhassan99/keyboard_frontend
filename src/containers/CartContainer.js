@@ -7,19 +7,24 @@ import AccessoryShow from '../components/AccessoryShow'
 import CartShowCard from '../components/CartShowCard'
 
 class CartContainer extends React.Component {  
-    state = {
-        cartItems: []
-    }
-    componentDidUpdate(prevProps){
-        if (this.props.cartItems.length !== prevProps.cartItems.length) {
-            this.setState({ cartItems: this.props.cartItems })
-        }
-    }
+    // state = {
+    //     cartItems: []
+        
+    // }
+    // componentDidUpdate(prevProps){
+    //     if (this.props.cartItems.length !== prevProps.cartItems.length) {
+    //         this.setState({ cartItems: this.props.cartItems })
+    //     }
+    // }
+
+
     render () {
-        let cartItem = this.state.cartItems.map(cartItem => <CartShowCard cartItem={cartItem} key={cartItem.id}/>)
+        console.log(this.props.cartItems)
+        let cartItem = this.props.cartItems.map(cartItem => <CartShowCard cartItem={cartItem} key={cartItem.id}/>)
+        
         return (
             <div>
-                <h1>Cart</h1>
+                
                 {cartItem}
             </div>
         )
