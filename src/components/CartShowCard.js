@@ -12,7 +12,7 @@ class CartShowCard extends React.Component {
     //     }
     // }
     render () {
-        console.log(this.props.cartItem)
+        // console.log('cart show cart', this.props.cartItem)
         
         return (
 
@@ -27,6 +27,7 @@ class CartShowCard extends React.Component {
 
                 <p>Category: {this.props.cartItem.category}</p>
                 <button className="add-to-cart">Purchase</button>
+                <button className="add-to-cart" onClick={() => this.props.deleteHandler(this.props.cartItem.id)}>Remove Item</button>
             </div>
         )
     }

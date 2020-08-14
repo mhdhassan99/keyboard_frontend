@@ -20,7 +20,7 @@ class CartContainer extends React.Component {
 
     render () {
         console.log(this.props.cartItems)
-        let cartItem = this.props.cartItems.map(cartItem => <CartShowCard cartItem={cartItem} key={cartItem.id}/>)
+        let cartItem = this.props.cartItems.map(cartItem => <CartShowCard cartItem={cartItem} key={cartItem.id} deleteHandler={this.props.deleteHandler}/>)
         
         return (
             <div>
