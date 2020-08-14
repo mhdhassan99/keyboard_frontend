@@ -10,12 +10,17 @@ class ItemShowPage extends React.Component {
     }
     render() {
         return (
-            <div className="item-show-page">
-                <NavLink to={`/items/${this.item.id}`}> <h1>{this.item.name}</h1> </NavLink>
-                <h3>Price: ${this.item.price}</h3>
-                <img className="item-show-page-picture" alt="" src={this.item.image} />
-                <p>Category: {this.item.category}</p>  
-                <button className="add-to-cart"> Add to cart </button>
+            <div className="Grid">
+                <div className="image-wrapper">
+                    <img className="item-show-page-picture" alt="" src={this.item.image} />
+                </div>
+                <div className="item-show-page">
+                    <NavLink to={`/items/${this.item.id}`}> <h1>{this.item.name}</h1> </NavLink>
+                    <h3>Price: ${this.item.price}</h3>
+                    
+                    <p>Category: {this.item.category}</p>  
+                    <button className="add-to-cart"> Add to cart </button>
+                </div>
             </div>
         )
     }

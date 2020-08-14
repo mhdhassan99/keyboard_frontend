@@ -39,7 +39,6 @@ class ItemContainer extends React.Component {
                     <Route path="/items/accessories" render={(props) => (
                         <AccessoryShow {...props} items={this.state.items} />
                     )}/>
-
                     <Route path="/items/keyboards" render={(props) => (
                         <KeyBoardShow {...props} items={this.state.items} /> 
                     )}/>

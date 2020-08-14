@@ -2,6 +2,7 @@
     border: 200px;
     margin: 20px;
     display: flex;
+    justify-content: center;
 }
 
 .item-show-page {
@@ -13,23 +14,28 @@
     padding: 20px;
     margin: 15px;
     border-radius: 10px;
-    background: linear-gradient(to right, #3d484100, #423a308c);
-    border: 3px solid #62427b;
+    background: linear-gradient(to right, #3d484100, #423a3014);
+    border: 3px solid #ffffff;
+}
+
+.item-show-page:hover {
+    box-shadow: -8px 2px 10px 1px #210B2C;
 }
 
 .item-show-page-picture {
     width: auto;
-    height: 325px;
+    height: 230px;
     object-fit: fill;
     position: relative;
     transition: 0.4s ease-in all;
     border-radius: 10px;
-    box-shadow: -8px 2px 10px 1px #210B2C;
+    /* box-shadow: -8px 2px 10px 1px #210B2C; */
 }
 
 .item-show-page-picture:hover {
     transform: scale(1.1);
     box-shadow: none;
+    box-shadow: -8px 2px 10px 1px #210B2C;
 }
 
 .add-to-cart {
@@ -37,33 +43,39 @@
     border: 0.5px solid #2a28b1;
     color: #9946dd;
     font-size: 20px;
-    background: rgb(184, 225, 150);
+    /* background: rgb(136, 238, 51); */
     border-radius: 5px;
     padding-left: 10px;
     padding-right: 10px;
     margin: 5px;
+    border: #fffbf6;
+    transition: opacity .25s cubic-bezier(.65, .05, .36, 1);
 }
 
 .add-to-cart:hover {
-    color: red;
-    background: rgb(242, 236, 62);
-    transition: .3s
-
+    color: white;
+    background: rgb(149, 9, 249);
+    transition: .5s
 }
 
 .item-card {
-    width: 31%;
     height: 100%;
+    width: 30%;
     padding-right: 10px;
     vertical-align: middle;
-    padding: 20px;
-    margin: 15px;
+    padding: 5px;
+    margin: 10px;
     border-radius: 10px;
-    background: linear-gradient(to right, #3d484100, #423a308c);
-    border: 3px solid #62427b;
+    background: linear-gradient(to right, #3d484100, #ffffff);
+    /* border: 3px solid #62427b; */
     display: inline-grid;
+
 }
 
+.item-card:hover {
+    box-shadow: inset -1px 0px 2px 0px #210B2C;
+    transition: ease-in;
+}
 
 .item-card-picture {
     width: auto;
@@ -77,10 +89,30 @@
 }
 
 .item-card-picture:hover {
-    transform: scale(1.1);
+    transform: scale(1.5);
 }
 
 .item-name {
     font-size: 2rem;
+    /* font-family: serif;
+    color: black; */
+    font-family: sofia, arial, sans-serif;
+    color: black;
+
+}
+
+.item-name:hover {
+    font-size: 2rem;
     font-family: cursive;
+    transform: rotateX(45deg)
+}
+
+.item-image {
+    justify-content: center;
+    display: flex;
+    padding: 5px;
+}
+
+.Grid {
+    display: flex;
 }
