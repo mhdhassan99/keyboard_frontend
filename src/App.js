@@ -93,7 +93,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.searchValue)
+    // console.log(this.state.searchValue)
     return (
       <div>
         <NavBar changeHandler={this.changeHandler} />
