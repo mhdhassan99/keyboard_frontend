@@ -10,7 +10,7 @@ class ItemContainer extends React.Component {
 
     
     render() {
-        let items = this.props.items.map(item => <ItemCard item={item} key={item.id} addCartHandler={this.props.addCartHandler}/>)
+        let items = this.props.filterSearch.map(item => <ItemCard item={item} key={item.id} addCartHandler={this.props.addCartHandler}/>)
         // let cartItem = <CartContainer cartItems={this.props.cartItems} />
        
         return (
@@ -19,10 +19,10 @@ class ItemContainer extends React.Component {
             
                 <Switch>
                     <Route path="/items/accessories" render={(props) => (
-                        <AccessoryShow {...props} items={this.props.items} />
+                        <AccessoryShow {...props} items={this.props.items} addCartHandler={this.props.addCartHandler}/>
                     )}/>
                     <Route path="/items/keyboards" render={(props) => (
-                        <KeyBoardShow {...props} items={this.props.items} /> 
+                        <KeyBoardShow {...props} items={this.props.items} addCartHandler={this.props.addCartHandler}/> 
                     )}/>
                     <Route path="/items/:id" render={(props) => (
                         <ItemShowPage {...props} items={this.props.items}/>

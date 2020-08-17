@@ -13,8 +13,9 @@ class App extends React.Component {
 
   state = {
     items: [],
-    cartItems: []
-    
+    cartItems: [],
+    cartTotal: 0,
+    searchValue: ""
   }
 
   componentDidMount() {
@@ -25,17 +26,15 @@ class App extends React.Component {
     fetch('http://localhost:3000/items')
       .then(response => response.json())
       .then(items => this.filterCartItems(items))
-
-
+  }
+  filterCartItems = (items) => {
+    let filteredItems = items.filter(item => item.user_id === 1)
+    this.setState({
+      cartItems: filteredItems
+    })
   }
 
   addCartHandler = (id) => {
-    // let cartArray = [...this.state.items]
-    // let foundItem = cartArray.find(item => item.id === id)
-    // let updatedCart = [...this.state.cartItems, foundItem]
-    // this.setState({
-    //   cartItems: updatedCart
-    // })
     fetch('http://localhost:3000/items/' + id, {
         method: "PATCH",
         headers: {
@@ -46,14 +45,13 @@ class App extends React.Component {
           user_id: 1
         })
     })
+    .then(response => response.json())
+    .then(updatedObj => this.setState({
+      cartItems: [...this.state.cartItems, updatedObj]
 
-  }   
-  filterCartItems = (items) => {
-    let filteredItems = items.filter(item => item.user_id === 1)
-    this.setState({
-      cartItems: filteredItems
-    })
-  }
+    }, () => this.calculateTotal()))
+
+  } 
 
   deleteHandler = (id) => {
     fetch('http://localhost:3000/items/' + id, {
@@ -66,17 +64,42 @@ class App extends React.Component {
         user_id: null
       })
     })
+    .then(response => response.json())
+    .then(deleteObj => this.filterDelete(deleteObj))
   }
-  
+
+  filterDelete = (deleteObj) => {
+    let deletedFilter = this.state.cartItems.filter(item => item.id !== deleteObj.id)
+    this.setState({
+      cartItems: deletedFilter
+    }, () => this.calculateTotal())
+   
+  } 
+
+  calculateTotal = () => {
+    let totalArr = this.state.cartItems
+    let total = totalArr.map(item => (Number(item.price)))
+    let totalReduce = total.reduce(function(a, b){return a + b}, 0)
+    this.setState({
+      cartTotal: totalReduce 
+    })
+  }
+
+  changeHandler = (e) => {
+    this.setState({searchValue: e.target.value})
+  }
+  filterSearch = () => {
+    return this.state.items.filter(item => item.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+  }
 
   render() {
-    // console.log(this.state.cartItems)
+    console.log(this.state.searchValue)
     return (
       <div>
-        <NavBar/>
+        <NavBar changeHandler={this.changeHandler} />
         <Switch>
-          <Route path="/items" render={() => <ItemContainer items={this.state.items} addCartHandler={this.addCartHandler}/>} />
-          <Route path="/cart" render={() => <CartContainer cartItems={this.state.cartItems} deleteHandler={this.deleteHandler}/>} />
+          <Route path="/items" render={() => <ItemContainer items={this.state.items} addCartHandler={this.addCartHandler} filterSearch={this.filterSearch()}/>} />
+          <Route path="/cart" render={() => <CartContainer cartItems={this.state.cartItems} deleteHandler={this.deleteHandler} cartTotal={this.state.cartTotal}/>} />
           <UserContainer />
           <h1>our World</h1>  
         </Switch>

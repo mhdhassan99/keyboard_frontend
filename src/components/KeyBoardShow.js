@@ -10,7 +10,7 @@ class KeyBoardShow extends React.Component {
     }
 
     getKeyboards = () => {
-        return this.keyboards.map(keyboard => <ItemCard item={keyboard} key={keyboard.id}/>)
+        return this.keyboards.map(keyboard => <ItemCard item={keyboard} key={keyboard.id} addCartHandler={this.props.addCartHandler}/>)
     }
 
     render() {

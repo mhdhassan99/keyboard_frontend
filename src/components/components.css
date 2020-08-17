@@ -116,3 +116,28 @@
 .Grid {
     display: flex;
 }
+
+.item-card-cart {
+    height: 100%;
+    width: 30%;
+    padding-right: 10px;
+    vertical-align: middle;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #3d484100, #ffffff);
+    /* border: 3px solid #62427b; */
+    /* display: inline-grid; */
+}
+
+.cart-checkout-box {
+    float: right;
+    height: 100%;
+    width: 45%;
+    padding-right: 10px;
+    vertical-align: middle;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #3d484100, #ffffff);
+}

@@ -7,7 +7,7 @@ import { NavDropdown} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
 import { FormControl} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-function NavBar () {
+function NavBar (props) {
     return (
         <ul>
         <div className="NavBar">
@@ -32,8 +32,8 @@ function NavBar () {
                             </NavDropdown> */}
                         </Nav>
                         <Form inline>
-                            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                            <Button variant="outline-success">Search</Button>
+                            <FormControl onChange={props.changeHandler} value={props.searchValue} type="text" placeholder="Search" className="mr-sm-2" />
+                            {/* <Button variant="outline-success">Search</Button> */}
                         </Form>
                     </Navbar.Collapse>
                 </Navbar>

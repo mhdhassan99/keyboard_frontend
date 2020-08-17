@@ -16,7 +16,7 @@ class CartShowCard extends React.Component {
         
         return (
 
-            <div className="item-card">
+            <div className="item-card-cart">
                 <div className="item-image">
                     <img alt="" className="item-card-picture" src={this.props.cartItem.image} />
                 </div>
@@ -26,9 +26,9 @@ class CartShowCard extends React.Component {
                 <h3>Price: ${this.props.cartItem.price}</h3>
 
                 <p>Category: {this.props.cartItem.category}</p>
-                <button className="add-to-cart">Purchase</button>
                 <button className="add-to-cart" onClick={() => this.props.deleteHandler(this.props.cartItem.id)}>Remove Item</button>
             </div>
+            
         )
     }
 }
