@@ -15,7 +15,8 @@ class App extends React.Component {
     items: [],
     cartItems: [],
     cartTotal: 0,
-    searchValue: ""
+    searchValue: "",
+    quantityValue: ''
   }
 
   componentDidMount() {
@@ -61,7 +62,8 @@ class App extends React.Component {
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        user_id: null
+        user_id: null,
+        quantity: "1"
       })
     })
     .then(response => response.json())
@@ -78,11 +80,13 @@ class App extends React.Component {
 
   calculateTotal = () => {
     let totalArr = this.state.cartItems
-    let total = totalArr.map(item => (Number(item.price)))
+    let total = totalArr.map(item => (Number(item.price) * Number(item.quantity)))
+    
     let totalReduce = total.reduce(function(a, b){return a + b}, 0)
     this.setState({
       cartTotal: totalReduce 
     })
+    // console.log('state', this.state.cartTotal)
   }
 
   changeHandler = (e) => {
@@ -92,14 +96,31 @@ class App extends React.Component {
     return this.state.items.filter(item => item.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
   }
 
+  quantityHandler = (e, obj) => {
+    fetch('http://localhost:3000/items/' + obj, {
+      method: "PATCH",
+      headers: {
+        'content-type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        quantity: e.target.value
+      })
+    })
+    .then(response => response.json())
+    .then(item => this.setState({
+      quantityValue: item.quantity
+    }))
+  }
+  
   render() {
-    // console.log(this.state.searchValue)
+    console.log(this.state.quantityValue)
     return (
       <div>
         <NavBar changeHandler={this.changeHandler} />
         <Switch>
           <Route path="/items" render={() => <ItemContainer items={this.state.items} addCartHandler={this.addCartHandler} filterSearch={this.filterSearch()}/>} />
-          <Route path="/cart" render={() => <CartContainer cartItems={this.state.cartItems} deleteHandler={this.deleteHandler} cartTotal={this.state.cartTotal}/>} />
+          <Route path="/cart" render={() => <CartContainer cartItems={this.state.cartItems} deleteHandler={this.deleteHandler} cartTotal={this.state.cartTotal} quantityHandler={this.quantityHandler}/>} />
           <UserContainer />
           <h1>our World</h1>  
         </Switch>

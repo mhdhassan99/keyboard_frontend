@@ -11,9 +11,13 @@ class CartShowCard extends React.Component {
     //         this.setState({ cartItems: this.props.cartItem })
     //     }
     // }
+    updateQuantity = (e) => {
+        this.props.quantityHandler(e, this.props.cartItem.id)
+    }
+   
     render () {
         // console.log('cart show cart', this.props.cartItem)
-        
+
         return (
 
             <div className="item-card-cart">
@@ -26,7 +30,7 @@ class CartShowCard extends React.Component {
                 <h3>Price: ${this.props.cartItem.price}</h3>
 
                 <p>Category: {this.props.cartItem.category}</p>
-                <select name="quantity" >
+                <select name="quantity" onChange={this.updateQuantity} >
                     <option value="1" selected> 1</option>
                     <option value="2" > 2</option>
                     <option value="3" > 3</option>
