@@ -25,12 +25,47 @@ class App extends React.Component {
 			.then((response) => response.json())
 			.then((items) => this.filterCartItems(items));
 	}
-	filterCartItems = (items) => {
+  
+  filterCartItems = (items) => {
 		let filteredItems = items.filter((item) => item.user_id === 1);
 		this.setState({
 			cartItems: filteredItems,
 		});
 	};
+  
+  quantityHandler = (e, obj) => {
+		fetch("http://localhost:3000/items/" + obj, {
+			method: "PATCH",
+			headers: {
+				"content-type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify({
+				quantity: e.target.value,
+			}),
+		})
+			.then((response) => response.json())
+      .then((item) => {this.quantityAdjuster(item)})
+      // {this.quantityAdjuster(item)})
+      // console.log(this.state.cartTotal * item.quantity))
+      // ("This is the cart total", this.state.cartTotal, "This is the item quantity", item.quantity))
+  } // .quantityHandler
+
+  quantityAdjuster = (item) => {
+    let newArr = [...this.state.items]
+    // // console.log(newArr)
+    let cartItem = newArr.find(cartItem => cartItem.id === item.id)
+    // console.log(cartItem)
+    // console.log(cartItem.quantity, item.quantity) 3, 2
+    if(item.quantity > cartItem.quantity){
+      // if we are increasing the quantity
+        // we want to remove the current cart value and replace it with the new one
+        console.log( "The cart item quantity is greater than the item quantity")
+    } else {
+        console.log( "The cart item quantity is less than the item quantity")
+    }
+    // this.setState({cartTotal: this.state.cartTotal + (item.price * (item.quantity))-item.price})
+  } // .quantityAdjuster -> NEED TO FINISH ADD MINUS CONDITIONAL
 
 	addCartHandler = (id) => {
 		fetch("http://localhost:3000/items/" + id, {
@@ -108,27 +143,8 @@ class App extends React.Component {
 		);
 	};
 
-	quantityHandler = (e, obj) => {
-		fetch("http://localhost:3000/items/" + obj, {
-			method: "PATCH",
-			headers: {
-				"content-type": "application/json",
-				Accept: "application/json",
-			},
-			body: JSON.stringify({
-				quantity: e.target.value,
-			}),
-		})
-			.then((response) => response.json())
-			.then((item) =>
-				this.setState({
-					quantityValue: item.quantity,
-				})
-			);
-	};
-
 	render() {
-		console.log(this.state.quantityValue);
+		// console.log(this.state.quantityValue)
 		return (
 			<div>
 				<NavBar changeHandler={this.changeHandler} />
