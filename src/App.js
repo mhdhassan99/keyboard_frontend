@@ -34,6 +34,23 @@ class App extends React.Component {
       cartItems: filteredItems
     })
   }
+  quantityHandler = (e, obj) => {
+    fetch('http://localhost:3000/items/' + obj, {
+      method: "PATCH",
+      headers: {
+        'content-type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        quantity: e.target.value
+      })
+    })
+      .then(response => response.json())
+      .then(item => this.setState({
+        
+        quantityValue: item.quantity
+      }, () => this.calculateTotal()))
+  }
 
   addCartHandler = (id) => {
     fetch('http://localhost:3000/items/' + id, {
@@ -96,25 +113,10 @@ class App extends React.Component {
     return this.state.items.filter(item => item.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
   }
 
-  quantityHandler = (e, obj) => {
-    fetch('http://localhost:3000/items/' + obj, {
-      method: "PATCH",
-      headers: {
-        'content-type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        quantity: e.target.value
-      })
-    })
-    .then(response => response.json())
-    .then(item => this.setState({
-      quantityValue: item.quantity
-    }))
-  }
+
   
   render() {
-    console.log(this.state.quantityValue)
+    // console.log(this.state.quantityValue)
     return (
       <div>
         <NavBar changeHandler={this.changeHandler} />
