@@ -6,24 +6,34 @@ import { Nav } from "react-bootstrap";
 import { NavDropdown } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { FormControl } from "react-bootstrap";
+import { Link } from "react-router-dom";
+function NavBar(props) {
+	return (
+		<ul>
+			<div className="NavBar">
+				{/* <NavLink to="/items"> <li>Home </li></NavLink>  */}
 
-function NavBar () {
-    return (
-        <ul>
-        <div className="NavBar">
-            {/* <NavLink to="/items"> <li>Home </li></NavLink>  */}
-            
-                <Navbar bg="light" expand="lg">
-                    <Navbar.Brand href="#home">Home</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mr-auto">
-                            <Nav.Link href="/login">Login</Nav.Link>
-                            <Nav.Link href="/items">Home</Nav.Link>
-                            <Nav.Link href="/items/keyboards">Keyboard</Nav.Link>
-                            <Nav.Link href="/items/accessories">Accessories</Nav.Link>
-                            <Nav.Link href="/cart">Cart</Nav.Link>
-                            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+				<Navbar bg="light" expand="lg">
+					<Navbar.Brand href="#home">Home</Navbar.Brand>
+					<Navbar.Toggle aria-controls="basic-navbar-nav" />
+					<Navbar.Collapse id="basic-navbar-nav">
+						<Nav className="mr-auto">
+							<Nav.Link as={Link} to="/login">
+								Login
+							</Nav.Link>
+							<Nav.Link as={Link} to="/items">
+								Home
+							</Nav.Link>
+							<Nav.Link as={Link} to="/items/keyboards">
+								Keyboard
+							</Nav.Link>
+							<Nav.Link as={Link} to="/items/accessories">
+								Accessories
+							</Nav.Link>
+							<Nav.Link as={Link} to="/cart">
+								Cart
+							</Nav.Link>
+							{/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
@@ -33,11 +43,13 @@ function NavBar () {
 						</Nav>
 						<Form inline>
 							<FormControl
+								onChange={props.changeHandler}
+								value={props.searchValue}
 								type="text"
 								placeholder="Search"
 								className="mr-sm-2"
 							/>
-							<Button variant="outline-success">Search</Button>
+							{/* <Button variant="outline-success">Search</Button> */}
 						</Form>
 					</Navbar.Collapse>
 				</Navbar>

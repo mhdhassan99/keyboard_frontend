@@ -4,20 +4,32 @@ import { Route, Switch } from 'react-router-dom'
 import ItemShowPage from '../components/ItemShowPage'
 import KeyBoardShow from '../components/KeyBoardShow'
 import AccessoryShow from '../components/AccessoryShow'
+import CartShowCard from '../components/CartShowCard'
 
-class CartContainer extends React.Component {
+class CartContainer extends React.Component {  
     state = {
-        cartItems: []
+        cartItems: [],     
     }
-    currentCart = () => {
-        this.setState({
-            cartItems: [...this.props.cartItems]
-        })
+    componentDidUpdate(prevProps){
+        if (this.props.cartItems.length !== prevProps.cartItems.length) {
+            this.setState({ cartItems: this.props.cartItems })
+        }
+    
     }
     render () {
-        console.log(this.state.cartItems)
+        let cartItem = this.props.cartItems.map(cartItem => <CartShowCard cartItem={cartItem} key={cartItem.id} deleteHandler={this.props.deleteHandler}/>)
         return (
-            <h1>Cart</h1>
+            <div className="cart-container">
+                <div className="cart-checkout-box">
+                    <p> Item Subtotal: ${this.props.cartTotal}</p>
+                    <p> Estimated Tax: </p>
+                    
+                    <button className="add-to-cart"> Proceed to checkout</button>
+                </div>
+                <div className="items-container">
+                    {cartItem}
+                </div>
+            </div>
         )
     }
 }
