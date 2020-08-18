@@ -84,8 +84,8 @@
     position: relative;
     transition: 0.4s ease-in all;
     border-radius: 10px;
-    box-shadow: -8px 2px 10px 1px #210B2C;
-
+    /* box-shadow: -8px 2px 10px 1px #210B2C; */
+    box-shadow: -4px 1px 9px 0px #210B2C;
 }
 
 .item-card-picture:hover {

@@ -13,6 +13,7 @@ class App extends React.Component {
 		cartItems: [],
 		cartTotal: 0,
 		searchValue: "",
+		quantityValue: "",
 	};
 
 	componentDidMount() {
@@ -24,7 +25,6 @@ class App extends React.Component {
 			.then((response) => response.json())
 			.then((items) => this.filterCartItems(items));
 	}
-
 	filterCartItems = (items) => {
 		let filteredItems = items.filter((item) => item.user_id === 1);
 		this.setState({
@@ -63,6 +63,7 @@ class App extends React.Component {
 			},
 			body: JSON.stringify({
 				user_id: null,
+				quantity: "1",
 			}),
 		})
 			.then((response) => response.json())
@@ -83,19 +84,22 @@ class App extends React.Component {
 
 	calculateTotal = () => {
 		let totalArr = this.state.cartItems;
-		let total = totalArr.map((item) => Number(item.price));
+		let total = totalArr.map(
+			(item) => Number(item.price) * Number(item.quantity)
+		);
+
 		let totalReduce = total.reduce(function (a, b) {
 			return a + b;
 		}, 0);
 		this.setState({
 			cartTotal: totalReduce,
 		});
+		// console.log('state', this.state.cartTotal)
 	};
 
 	changeHandler = (e) => {
 		this.setState({ searchValue: e.target.value });
 	};
-
 	filterSearch = () => {
 		return this.state.items.filter((item) =>
 			item.name
@@ -104,8 +108,27 @@ class App extends React.Component {
 		);
 	};
 
+	quantityHandler = (e, obj) => {
+		fetch("http://localhost:3000/items/" + obj, {
+			method: "PATCH",
+			headers: {
+				"content-type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify({
+				quantity: e.target.value,
+			}),
+		})
+			.then((response) => response.json())
+			.then((item) =>
+				this.setState({
+					quantityValue: item.quantity,
+				})
+			);
+	};
+
 	render() {
-		console.log(this.state.searchValue);
+		console.log(this.state.quantityValue);
 		return (
 			<div>
 				<NavBar changeHandler={this.changeHandler} />
@@ -127,6 +150,7 @@ class App extends React.Component {
 								cartItems={this.state.cartItems}
 								deleteHandler={this.deleteHandler}
 								cartTotal={this.state.cartTotal}
+								quantityHandler={this.quantityHandler}
 							/>
 						)}
 					/>

@@ -14,10 +14,9 @@ class CartContainer extends React.Component {
         if (this.props.cartItems.length !== prevProps.cartItems.length) {
             this.setState({ cartItems: this.props.cartItems })
         }
-    
     }
     render () {
-        let cartItem = this.props.cartItems.map(cartItem => <CartShowCard cartItem={cartItem} key={cartItem.id} deleteHandler={this.props.deleteHandler}/>)
+        let cartItem = this.props.cartItems.map(cartItem => <CartShowCard cartItem={cartItem} key={cartItem.id} deleteHandler={this.props.deleteHandler} quantityHandler={this.props.quantityHandler}/>)
         return (
             <div className="cart-container">
                 <div className="cart-checkout-box">
