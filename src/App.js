@@ -24,14 +24,14 @@ class App extends React.Component {
 		fetch("http://localhost:3000/items")
 			.then((response) => response.json())
 			.then((items) => this.filterCartItems(items));
-	} // .componentDidMount // fetch => GET // sets this.state.item && send to .filterCartItems(items)
+	} // .componentDidMount // initializes state.item && sends to .filterCartItems(items)
 
 	filterCartItems = (items) => {
 		let filteredItems = items.filter((item) => item.user_id === 1);
 		this.setState({
 			cartItems: filteredItems,
 		});
-	}; // .filterCartItems(items) // get items from .componentDidMount // sets this.state.cartItems
+	}; // .filterCartItems(items) // items from .componentDidMount // sets this.state.cartItems
 
 	quantityHandler = (e, obj) => {
 		fetch("http://localhost:3000/items/" + obj, {
@@ -48,7 +48,7 @@ class App extends React.Component {
 			.then((item) => {
 				this.quantityAdjuster(item);
 			});
-	}; // .quantityHandler(e, obj) // gets (e, obj) from ./components/CartShowCard/onChange
+	}; // .quantityHandler(e, obj) // (e, obj) from ./components/CartShowCard/onChange
 
 	quantityAdjuster = (item) => {
 		let newArr = [...this.state.items];
@@ -63,7 +63,7 @@ class App extends React.Component {
 			item.price * item.quantity;
 
 		this.setState({ cartTotal: newValue, items: updateArr });
-	}; // .quantityAdjuster(item) // gets item from .quantityHandler(e, obj)
+	}; // .quantityAdjuster(item) // item from .quantityHandler(e, obj)
 
 	addCartHandler = (id) => {
 		fetch("http://localhost:3000/items/" + id, {
@@ -85,7 +85,7 @@ class App extends React.Component {
 					() => this.calculateTotal()
 				)
 			);
-	}; // .addCartHandler(id) // gets (id) from 
+	}; // .addCartHandler(id) // (id) from ./components/keyBoardShow/.keyBoards
 
 	deleteHandler = (id) => {
 		fetch("http://localhost:3000/items/" + id, {
@@ -101,7 +101,7 @@ class App extends React.Component {
 		})
 			.then((response) => response.json())
 			.then((deleteObj) => this.filterDelete(deleteObj));
-	};
+	}; // .deleteHandler(id) // (id) from ./components/CartShowCard/onClick
 
 	filterDelete = (deleteObj) => {
 		let deletedFilter = this.state.cartItems.filter(
@@ -113,7 +113,7 @@ class App extends React.Component {
 			},
 			() => this.calculateTotal()
 		);
-	};
+	}; // .filterDelete(deleteObj) // (deleteObj) from .deleteHandler(id)
 
 	calculateTotal = () => {
 		let totalArr = this.state.cartItems;
@@ -127,22 +127,21 @@ class App extends React.Component {
 		this.setState({
 			cartTotal: totalReduce,
 		});
-		// console.log('state', this.state.cartTotal)
-	};
+	}; // .calculateTotal // called by .filterDelete && .addCartHandler
 
 	changeHandler = (e) => {
 		this.setState({ searchValue: e.target.value });
-	};
+	}; // .changeHandler(e) // (e) from ./components/NavBar/search
+
 	filterSearch = () => {
 		return this.state.items.filter((item) =>
 			item.name
 				.toLowerCase()
 				.includes(this.state.searchValue.toLowerCase())
 		);
-	};
+	}; // .filterSearch // props to ./containers/ItemContainer
 
 	render() {
-		// console.log(this.state.quantityValue)
 		return (
 			<div>
 				<NavBar changeHandler={this.changeHandler} />

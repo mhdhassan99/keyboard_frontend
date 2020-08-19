@@ -66,3 +66,15 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+========================================================
+NOTES
+========================================================
+-- removed this from top of /components/CartShowCard
+	// componentDidUpdate(prevProps) {
+	//     if (this.props.cartItem.length !== prevProps.cartItem.length) {
+	//         this.setState({ cartItems: this.props.cartItem })
+	//     }
+	// }
+    // this was commented out and removing it doesn't break code but I don't understand what it did so I am putting it here for possible reference later.
+    - Corey
