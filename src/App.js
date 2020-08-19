@@ -47,7 +47,6 @@ class App extends React.Component {
     })
       .then(response => response.json())
       .then(item => this.setState({
-        
         quantityValue: item.quantity
       }, () => this.calculateTotal()))
   }
@@ -67,8 +66,7 @@ class App extends React.Component {
     .then(updatedObj => this.setState({
       cartItems: [...this.state.cartItems, updatedObj]
 
-    }, () => this.calculateTotal()))
-
+    }))
   } 
 
   deleteHandler = (id) => {
@@ -95,16 +93,17 @@ class App extends React.Component {
    
   } 
 
-  calculateTotal = () => {
-    let totalArr = this.state.cartItems
-    let total = totalArr.map(item => (Number(item.price) * Number(item.quantity)))
+  // calculateTotal = () => {
+  //   let totalArr = this.state.cartItems
+  //   let total = totalArr.map(item => (Number(item.price) * Number(item.quantity)))
+  //   console.log('total', total)
+  //   let totalReduce = total.reduce(function(a, b){return a + b}, 0)
+  //   this.setState({
+  //     cartTotal: totalReduce 
+  //   })
+  //   // console.log('state', this.state.cartTotal)
     
-    let totalReduce = total.reduce(function(a, b){return a + b}, 0)
-    this.setState({
-      cartTotal: totalReduce 
-    })
-    // console.log('state', this.state.cartTotal)
-  }
+  // }
 
   changeHandler = (e) => {
     this.setState({searchValue: e.target.value})
