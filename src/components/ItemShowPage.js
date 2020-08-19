@@ -1,6 +1,7 @@
 import React from 'react' 
 import {NavLink} from 'react-router-dom'
 import './components.css';
+import ReactPlayer from 'react-player'
 class ItemShowPage extends React.Component {
     constructor(props) {
     super (props)
@@ -32,9 +33,9 @@ class ItemShowPage extends React.Component {
             </div>
 
             <div className="video" >
-              <video className="video-box" controls width="250" crossOrigin="use-credentials">
-                <source src={this.item.video} type="video/mp4" />
-              </video>
+              <ReactPlayer url={this.item.video}/>
+                {/* < url={this.item.video} type="video/mp4" /> */}
+              
             </div>
           </div>
         );

@@ -161,3 +161,8 @@
     background: rgb(149, 9, 249);
     transition: .5s
 }
+
+.video {
+    margin-left: 3em;
+    margin-top: 2em;
+}
