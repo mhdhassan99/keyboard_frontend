@@ -29,7 +29,7 @@ class CartShowCard extends React.Component {
 				<h3>Price: ${this.props.cartItem.price}</h3>
 
 				<p>Category: {this.props.cartItem.category}</p>
-				<select name="quantity" onChange={this.updateQuantity}>
+				<select className="quantity-input" name="quantity" onChange={this.updateQuantity}>
 					<option value="1"> 1</option>
 					<option value="2"> 2</option>
 					<option value="3"> 3</option>

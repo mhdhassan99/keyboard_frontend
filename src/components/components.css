@@ -141,3 +141,23 @@
     border-radius: 10px;
     background: linear-gradient(to right, #3d484100, #ffffff);
 }
+
+.quantity-input {
+    margin-top: 15px;
+    border: 0.5px solid #2a28b1;
+    color: #9946dd;
+    font-size: 20px;
+    /* background: rgb(136, 238, 51); */
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px;
+    border: #fffbf6;
+    transition: opacity .25s cubic-bezier(.65, .05, .36, 1);
+}
+
+.quantity-input:hover {
+    color: white;
+    background: rgb(149, 9, 249);
+    transition: .5s
+}
