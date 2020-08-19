@@ -53,9 +53,7 @@ class App extends React.Component {
 	quantityAdjuster = (item) => {
 		let newArr = [...this.state.items];
 		let cartItem = newArr.find((cartItem) => cartItem.id === item.id);
-		let cartItemFilter = newArr.filter(
-			(cartItem) => cartItem.id !== item.id
-		);
+		let cartItemFilter = newArr.filter((cartItem) => cartItem.id !== item.id);
 		let updateArr = [...cartItemFilter, item];
 		let newValue =
 			this.state.cartTotal -
