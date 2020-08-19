@@ -24,16 +24,16 @@ class App extends React.Component {
 		fetch("http://localhost:3000/items")
 			.then((response) => response.json())
 			.then((items) => this.filterCartItems(items));
-	}
-  
-  filterCartItems = (items) => {
+	} // .componentDidMount // fetch => GET // sets this.state.item && send to .filterCartItems(items)
+
+	filterCartItems = (items) => {
 		let filteredItems = items.filter((item) => item.user_id === 1);
 		this.setState({
 			cartItems: filteredItems,
 		});
-	};
-  
-  quantityHandler = (e, obj) => {
+	}; // .filterCartItems(items) // get items from .componentDidMount // sets this.state.cartItems
+
+	quantityHandler = (e, obj) => {
 		fetch("http://localhost:3000/items/" + obj, {
 			method: "PATCH",
 			headers: {
@@ -45,27 +45,25 @@ class App extends React.Component {
 			}),
 		})
 			.then((response) => response.json())
-      .then((item) => {this.quantityAdjuster(item)})
-      // {this.quantityAdjuster(item)})
-      // console.log(this.state.cartTotal * item.quantity))
-      // ("This is the cart total", this.state.cartTotal, "This is the item quantity", item.quantity))
-  } // .quantityHandler
+			.then((item) => {
+				this.quantityAdjuster(item);
+			});
+	}; // .quantityHandler(e, obj) // gets (e, obj) from ./components/CartShowCard/onChange
 
-  quantityAdjuster = (item) => {
-    let newArr = [...this.state.items]
-    // // console.log(newArr)
-    let cartItem = newArr.find(cartItem => cartItem.id === item.id)
-    // console.log(cartItem)
-    // console.log(cartItem.quantity, item.quantity) 3, 2
-    if(item.quantity > cartItem.quantity){
-      // if we are increasing the quantity
-        // we want to remove the current cart value and replace it with the new one
-        console.log( "The cart item quantity is greater than the item quantity")
-    } else {
-        console.log( "The cart item quantity is less than the item quantity")
-    }
-    // this.setState({cartTotal: this.state.cartTotal + (item.price * (item.quantity))-item.price})
-  } // .quantityAdjuster -> NEED TO FINISH ADD MINUS CONDITIONAL
+	quantityAdjuster = (item) => {
+		let newArr = [...this.state.items];
+		let cartItem = newArr.find((cartItem) => cartItem.id === item.id);
+		let cartItemFilter = newArr.filter(
+			(cartItem) => cartItem.id !== item.id
+		);
+		let updateArr = [...cartItemFilter, item];
+		let newValue =
+			this.state.cartTotal -
+			cartItem.price * cartItem.quantity +
+			item.price * item.quantity;
+
+		this.setState({ cartTotal: newValue, items: updateArr });
+	}; // .quantityAdjuster(item) // gets item from .quantityHandler(e, obj)
 
 	addCartHandler = (id) => {
 		fetch("http://localhost:3000/items/" + id, {
@@ -87,7 +85,7 @@ class App extends React.Component {
 					() => this.calculateTotal()
 				)
 			);
-	};
+	}; // .addCartHandler(id) // gets (id) from 
 
 	deleteHandler = (id) => {
 		fetch("http://localhost:3000/items/" + id, {
