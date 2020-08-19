@@ -1,13 +1,11 @@
-import React from 'react';
-import './App.css';
-import ItemContainer from './containers/ItemContainer';
-import UserContainer from './containers/UserContainer';
-import NavBar from './components/NavBar'
-import CartContainer from './containers/CartContainer'
+import React from "react";
+import "./App.css";
+import ItemContainer from "./containers/ItemContainer";
+import UserContainer from "./containers/UserContainer";
+import NavBar from "./components/NavBar";
+import CartContainer from "./containers/CartContainer";
 
-
-import { Route, Switch} from 'react-router-dom'
-
+import { Route, Switch } from "react-router-dom";
 
 class App extends React.Component {
 
@@ -90,7 +88,6 @@ class App extends React.Component {
     this.setState({
       cartItems: deletedFilter
     }, () => this.calculateTotal())
-   
   } 
 
   // calculateTotal = () => {

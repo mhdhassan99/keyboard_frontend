@@ -14,7 +14,7 @@ class ItemCard extends React.Component {
             <div className="item-name">
                 <NavLink to={`/items/${this.props.item.id}`}> <h2>{this.props.item.name}</h2> </NavLink>
             </div>
-             <h3>Price: ${this.props.item.price}</h3>
+            <h3>Price: ${this.props.item.price}</h3>
             
             <p>Category: {this.props.item.category}</p>  
             <button className="add-to-cart" onClick={() => this.props.addCartHandler(this.props.item.id)}>Add To Cart</button>
