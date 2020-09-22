@@ -1,7 +1,7 @@
 # About
 
 - React
-- Rails [Backend](https://github.com/mhdhassan99/keyboard_frontend)
+- Rails [Backend](https://github.com/mhdhassan99/keyboard_backend)
 
 ## To Do
 
